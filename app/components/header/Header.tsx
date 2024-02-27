@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 const Header = () => {
   return (
     <header className='sticky top-0 z-50 bg-white shadow-md py-5'>
-        <div className='container grid grid-cols-3'>
+        <div className='container grid grid-cols-3 relative'>
         <Link href="/" className='relative flex items-center h-auto my-auto '>
             <Image 
             src="https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg"
