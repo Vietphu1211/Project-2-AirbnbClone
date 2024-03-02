@@ -3,9 +3,13 @@ import Banner from "./components/Banner";
 import Explore from "./components/Explore";
 import Live from "./components/Live";
 import GreatestOutdoors from "./components/GreatestOutdoors";
+import Header from "./components/header/Header";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
+    <>
+    <Header />
     <main>
       <Banner />
       <Explore />
@@ -17,5 +21,7 @@ export default function Home() {
       linkText='Get Inspired'
       />
     </main>
+    <Footer />
+    </>
   );
 }
