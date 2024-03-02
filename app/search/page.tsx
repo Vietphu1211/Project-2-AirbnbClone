@@ -5,6 +5,7 @@ import { getSearchresult } from "../utils/api";
 import Link from "next/link";
 import { SearhResultData } from "../types/app";
 import ListingCard from "../components/ListingCard";
+import Map from "../components/Map";
 
 type SearchParams = {
   location: string;
@@ -29,8 +30,9 @@ const SearchResult = async ({
     <>
       <Header placeholder={`${location} | ${range} | ${numOfGuests} guest`} />
       <main>
-        <section className='pt-14'>
-          <div className='container'>
+        <section >
+          <div className='container flex'>
+            <div className='pt-14 pr-4'>
             <p className='text-xs'>
               300+ stays - {range} - for {numOfGuests} guests
             </p>
@@ -44,6 +46,8 @@ const SearchResult = async ({
                 </button>
               ))}
             </div>
+            {/* rendering listing  */}
+            <div>
             {searchResultData.map((listing) => (
               <ListingCard key={listing.title} 
               img={listing.img} 
@@ -55,6 +59,13 @@ const SearchResult = async ({
               price={listing.price}
               />
             ))}
+            </div>
+            </div>
+            {/* tạo map bằng mapbox */}
+              <div className="hidden xl:inline-flex xl:min-w-[600px]">
+                <Map searchResultData={searchResultData}/>
+              </div>
+
           </div>
         </section>
       </main>
