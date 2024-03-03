@@ -1,13 +1,14 @@
 'use client'
 import { useState } from 'react'
 import MapGL, { Marker, Popup } from 'react-map-gl'
-import { SearhResultData } from '../types/app'
+import { ListingCardItem, SearhResultData } from '../types/app'
 import {getCenter} from 'geolib'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Image from 'next/image'
 
 
 const Map = ({searchResultData}:{searchResultData: SearhResultData} ) => {
+    const [selectedLocation, setSelectedLocation] = useState<ListingCardItem | null>(null)
     const coordinates = searchResultData.map((listing) => ({
         longitude: listing.long,
         latitude: listing.lat,
@@ -40,13 +41,27 @@ const Map = ({searchResultData}:{searchResultData: SearhResultData} ) => {
     {searchResultData.map((listing) => (
         <div key={listing.long}>
             <Marker longitude={listing.long} latitude={listing.lat}>
-           <div className='animate-bounce'>
+           <div
+           onClick={()=> setSelectedLocation(listing)}
+           className='animate-bounce'>
            <Image src="/mapMarker.png" 
             alt='map-marker' 
             width={24}
             height={24} />
            </div>
             </Marker>
+      {selectedLocation?.long === listing.long ? 
+      (
+      <Popup 
+      closeOnClick={false} 
+      onClose={() => setSelectedLocation(null)}
+      longitude={listing.long}
+      latitude={listing.lat}
+      >
+      {listing.title}
+      
+      </Popup>
+      ) : null}
         </div>
     ))}
 
