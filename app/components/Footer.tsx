@@ -47,7 +47,7 @@ const Footer = () => {
     <footer className=" bg-gray-100">
         <div className='container grid grid-cols-1 md:grid-cols-4 gap-y-10 px-32 py-14 bg-gray-100 text-gray-600'>
             {links.map((link) => (
-                <div className="space-y-4 text-xs text-gray-600">
+                <div className="space-y-4 text-xs text-gray-600" key={link.title}>
                     <h5 className='font-bold'>
                         {link.title}
                     </h5>
